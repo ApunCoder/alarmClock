@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alarm-Clock</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,100&display=swap" rel="stylesheet">
+    <!-- CSS only -->
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Image of A clock for Looking Nice -->
+        <img src="clock.png" alt="">
+        <!-- Here's a clock which shows current time -->
+        <h2 id="time">00:00:00 PM</h2>
+        <div>
+            <!-- Here's a form with select tags for making alarm clock -->
+            <form action="submit">
+                <select name="hour" id="hour">
+                    <option value="hour" selected hidden>Hours</option>
+                </select>
+                <!-- Minutes Dropdown Menu -->
+                <select name="minute" id="minute">
+                    <option value="minute" selected hidden>Minutes</option>
+                </select>
+                <!-- AM/PM Dropdowm menu -->
+                <select name="ampm" id="AMPM">
+                    <option value="ampm" selected hidden>AM/PM</option>
+                </select>
+        </div>
+        <!-- Button to Set Alarm -->
+        <div>
+            <button type="button" id="set-alarm-btn">Set Alarm</button>
+        </div>
+        </form>
+        <div id="list-alarm">
+            <div id="heading-alarm-list">
+                <h4>Alarms</h4>
+            </div>
+            <ol id="list">
+        
+            </ol>
+            <span id="delete">
+                
+            </span>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
