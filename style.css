@@ -52,11 +52,11 @@ body {
     cursor: pointer;
     font-family: 'DynaPuff', cursive;
 }
-
+/* Add hover effect for buttons */
 #set-alarm-btn:hover, #delete-alarm-btn:hover {
     background-color: #0b5ed7;
 }
-
+/* some CSS for select buttons */
 select {
     border: 0.2px solid grey;
     padding: 9px;
