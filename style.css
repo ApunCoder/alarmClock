@@ -1,8 +1,11 @@
-body{
+/* Give some design for body */
+body {
     margin: 0;
     background-color: rgb(5, 194, 194);
+    font-family: "Sofia", sans-serif;
 }
-.wrapper{
+/* Main div where all elements present */
+.wrapper {
     border: 2px solid hotpink;
     display: flex;
     flex-direction: column;
@@ -11,14 +14,34 @@ body{
     background-color: white;
     border-radius: 3%;
     margin: auto;
-} 
-.wrapper img{
+}
+/* CSS for Clock Image */
+.wrapper img {
     height: 300px;
     width: 250px;
     display: flex;
     flex-wrap: wrap;
 }
-#set-alarm-btn{
+/* Rotate animation (Not So Good) */
+/* .rotate {
+    animation: rotation 2s infinite linear;
+    transform: rotate(22deg);
+  }
+  
+  @keyframes rotation {
+    from {
+      transform: rotate(22deg);
+    }
+    50% {
+      transform: rotate(-22deg);
+    }
+    to {
+      tranform: rotate(-22deg);
+    }
+  } */
+
+/* same styling for set and delete button of alarm */
+#set-alarm-btn, #delete-alarm-btn {
     margin: 8px;
     background-color: #0d6efd;
     color: #fff;
@@ -29,27 +52,32 @@ body{
     cursor: pointer;
     font-family: 'DynaPuff', cursive;
 }
-#set-alarm-btn:hover{
-    background-color:#0b5ed7;
+
+#set-alarm-btn:hover, #delete-alarm-btn:hover {
+    background-color: #0b5ed7;
 }
-select{
+
+select {
     border: 0.2px solid grey;
     padding: 9px;
     border-radius: 6%;
     margin: 2px 12px;
     font-size: 1rem;
 }
-#heading-alarm-list{
+
+#heading-alarm-list {
     display: inline-block;
     margin: -7% 10%;
 }
-#list-alarm{
+
+#list-alarm-div {
     display: inline-block;
     margin: 0px;
     width: 89%;
 }
-#delete-button{
-    color:#fff;
+
+#delete-button {
+    color: #fff;
     background-color: royalblue;
     margin-left: 50px;
 }

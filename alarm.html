@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sofia:ital,wght@1,100&display=swap" rel="stylesheet">
     <!-- CSS only -->
 </head>
 
 <body>
     <div class="wrapper">
         <!-- Image of A clock for Looking Nice -->
-        <img src="clock.png" alt="">
+        <img src="clock.png" alt="" class="rotate">
         <!-- Here's a clock which shows current time -->
         <h2 id="time">00:00:00 PM</h2>
         <div>
@@ -39,16 +39,16 @@
             <button type="button" id="set-alarm-btn">Set Alarm</button>
         </div>
         </form>
-        <div id="list-alarm">
+        <div id="list-alarm-div">
             <div id="heading-alarm-list">
                 <h4>Alarms</h4>
             </div>
-            <ol id="list">
-        
+            <ol id="list-alarm">
+
             </ol>
-            <span id="delete">
-                
-            </span>
+            <!-- <span id="delete">
+
+            </span> -->
         </div>
     </div>
     <script src="script.js"></script>

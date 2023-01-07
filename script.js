@@ -1,10 +1,17 @@
 let date = new Date();
-var currentampm;
-var currentTimeHours;
-var currentTimeMinutes;
+
+// All necessary variables
+
 var setHour;
 var setMinutes;
 var setAMPM;
+let alarmList = [];
+let Time;
+var settedTime;
+
+function ringAlarm() {
+	alert('Alarm is Ringing');
+}
 
 /* Adding zero Before number which is less than 10 */
 
@@ -28,7 +35,7 @@ var currentTime = setInterval(function () {
 
 	// Change 24 hour to 12 hour format:
 
-	var hours12Format = (hours24Format<12)? hours24Format: hours24Format - 12;
+	var hours12Format = (hours24Format < 12) ? hours24Format : hours24Format - 12;
 
 	// Taking Minutes
 
@@ -37,7 +44,7 @@ var currentTime = setInterval(function () {
 
 	var seconds = date.getSeconds();
 
-	// Determine the AM & PM
+	// Determine AM & PM
 
 	var ampm = (date.getHours()) < 12 ? 'AM' : 'PM';
 
@@ -45,21 +52,20 @@ var currentTime = setInterval(function () {
 		hours12Format = 12;
 	}
 
-	//Updating Time On Clock Face
+	//Updating Time On Clock's Face
 
 	h2.textContent = addingZero(hours12Format) + ":" + addingZero(minutes) + ":" + addingZero(seconds) + " " + ampm;
 
-	currentTimeHours = hours12Format;
-	currentTimeMinutes = minutes;
-	currentampm = ampm;
+	// paas a string into settedTime variable for adding in alarmList
 
+	settedTime = `${addingZero(hours12Format)}:${addingZero(minutes)}:${addingZero(seconds)} ${ampm}`;
 }, 1000);
 
-// Creating option for select tag by JAVASCRIPT
+	// Creating option for select tag by JAVASCRIPT
 
 var selectMenu = document.querySelectorAll("select");
 
-// Creating Options of Select Tab by Using For Loop
+	// Creating Options of Select Tab by Using For Loop
 
 for (let i = 12; i > 0; i--) {
 	i = i < 10 ? "0" + i : i;
@@ -82,7 +88,7 @@ for (let i = 2; i > 0; i--) {
 var btn = document.getElementById('set-alarm-btn');
 btn.addEventListener('click', setAlarm);
 
-// Gathering Time for Setting alarm
+	// Gathering Time for Setting alarm
 function setAlarm() {
 	setHour = document.getElementById('hour').value;
 	setMinutes = document.getElementById('minute').value;
@@ -90,78 +96,50 @@ function setAlarm() {
 	// check input is corrected or not && if it is incorrect than alert;
 	if (setHour == "hour" || setMinutes == "minute" || setAMPM == "ampm") {
 		return alert("OOPS !! Enter correct Time!!");
+	} else {
+		Time = `${setHour}:${setMinutes}:00 ${setAMPM}`;
+		alarmList.push(Time);
 	}
-	// Check Current Time is equal to Set Time or !
-	 var ring = setInterval(()=>{
-		if(currentTimeHours == setHour && currentTimeMinutes == setMinutes && currentampm == setAMPM){
-			window.alert("alarm ring");
-			clearInterval(ring);
-		}
-	},1000);
-
 }
+	// this is to check alarm into the AlarmList Array in every 1 sec
+var ring = setInterval(() => {
+	if (alarmList.includes(settedTime)) {
+		ringAlarm();
+	}
+}, 1000);
 
-// var btn = document.getElementById('set-alarm-btn');
-// btn.addEventListener('click', ()=>{
-// 	if (setHour == "hour" || setMinutes == "minute" || setAMPM == "ampm") {
-// 		return;
-// 	}
-// 	var list = document.getElementById("list");
-	
-// 	var span = document.createElement('span');
-// 	span.setAttribute('id','alarm-list-div');;
-// 	list.appendChild(span);
+	// Show alarm on list
 
-// 	var div1 = document.getElementById('alarm-list-div');
-// 	var li = document.createElement('li');
-// 	li.innerText =  setHour + ":" + setMinutes + " " + setAMPM;
-// 	div1.appendChild(li);
-	
-// 	// Create Button by JavaScript for deleting setted alarm
-	
-// 	var btn1 = document.createElement('button');
-// 	btn1.innerHTML = "Delete";
-// 	document.getElementById("delete").appendChild(btn1);
-// 	btn1.setAttribute('id','delete-btn')
-// 	var delete_btn = document.getElementById('delete-btn');
-// 	delete_btn.addEventListener('click',()=>{
-// 		div1.remove();
-// 	});
-// });
+var list = document.getElementById("list-alarm");
 var btn = document.getElementById('set-alarm-btn');
-btn.addEventListener('click', ()=>{
+btn.addEventListener('click', () => {
 	if (setHour == "hour" || setMinutes == "minute" || setAMPM == "ampm") {
 		return;
+	} else {
+		const listItem =
+			`<li class="alarm-time-list">
+				<span class="show-setted-alarm">${Time}</span>
+				<button id="delete-alarm-btn" class="delete" onclick="removeAlarm(this.value)" value=${Time}>Delete</button>
+			</li>`
+		list.innerHTML += listItem;
 	}
-	var list = document.getElementById("list");
-	// var button = document.createElement('button');
-	// button.id = 'delete';
-	var li = document.createElement('li');
-	// var buttonToDelete = document.createElement('button');
-	// buttonToDelete.setAttribute('id','delete-button');
-	// console.log(buttonToDelete);
-	
-	li.innerHTML =  setHour + ":" + setMinutes + " " + setAMPM + `<button id="delete-button" onClick="del()">Delete Me!</button>`;
-	list.appendChild(li);
-
-	
-	// var div1 = document.getElementById('alarm-list-div');
-	// var li = document.createElement('li');
-	// div1.appendChild(li);
-	
-	// Create Button by JavaScript for deleting setted alarm
-	
-	// var btn1 = document.createElement('button');
-	// btn1.innerHTML = "Delete";
-	// document.getElementById("delete").appendChild(btn1);
-	// btn1.setAttribute('id','delete-btn')
-	// var delete_btn = document.getElementById('delete-btn');
-	// delete_btn.addEventListener('click',()=>{
-	// 	div1.remove();
-	// });
 });
 
-	// function del(){
-	// 	var buttonToDelete = document.getElementById('delete-button');
-	// 	buttonToDelete.parentNode.remove();
-	// }
+	// This is to remove Alarm from Upcoming Alarm list
+
+list.addEventListener('click', e => {
+	console.log("removing element")
+	if (e.target.classList.contains("delete")) {
+		e.target.parentElement.remove();
+	}
+})
+
+
+// This is to remove Alarm from alarmList (Array)
+
+removeAlarm = (value) => {
+	value += " " + setAMPM;
+	let Index = alarmList.findIndex((time) => time === value);
+	alarmList.splice(Index, 1);
+	console.log(Index, 'index');
+}
